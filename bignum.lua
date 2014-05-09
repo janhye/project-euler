@@ -70,7 +70,14 @@ end
 function Bignum:tostring ()
   local buf = {}
   for i = #self.data, 1, -1 do 
-    buf[#buf + 1] = self.data[i]
+    local s = tostring(self.data[i])
+    if i < #self.data then
+      local ext = self.bits - #s
+      for i = 1, ext do
+        buf[#buf + 1] = "0"
+      end
+    end
+    buf[#buf + 1] = s
   end
   return table.concat(buf)
 end
