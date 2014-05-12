@@ -125,6 +125,19 @@ function BignumDec:div2 (modify_self)
   return mod, b
 end
 
+function BignumDec:mul (n)
+  if self:is_zero() then return self end
+  if n == 0 then return BignumDec.new(0) end
+
+  local b = BignumDec.new(0)
+
+  for i = 1, n do
+    b = b:add(self, true)
+  end
+
+  return b
+end
+
 function BignumDec:is_zero ()
   if #self.data == 1 and self.data[1] == 0 then
     return true
@@ -146,6 +159,15 @@ function BignumDec.pow2 (n)
     b = b:add(b, true)
   end
   return b
+end
+
+-- n!
+function BignumDec.factorial (n)
+  local fact = BignumDec.new(1)
+  for i = 2, 100 do
+    fact = fact:mul(i)
+  end
+  return fact
 end
 
 --[[-------------------------------------------------------------------------
