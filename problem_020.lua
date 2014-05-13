@@ -1,5 +1,5 @@
-local helpers = require 'helpers'
-local Bignum = require 'bignum'
+local helper = require "lib.helper"
+local Bignum = require "lib.bignum"
 
 local function answer ()
   local fact = Bignum.factorial(100)
@@ -11,6 +11,6 @@ local function answer ()
   return sum, str
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

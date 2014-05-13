@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local table = table
 local math = math
@@ -8,15 +8,15 @@ local function answer ()
   local buf = {}
   local n = 1000000 - 1
   while #permutation > 0 do
-    local fact = helpers.factorial(#permutation - 1)
+    local fact = helper.factorial(#permutation - 1)
     local j = math.floor(n / fact)
     n = n % fact
-    buf[#buf + 1] = helpers.remove_at(permutation, j + 1)
+    buf[#buf + 1] = helper.remove_at(permutation, j + 1)
   end
 
   return table.concat(buf)
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

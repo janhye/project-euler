@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local function smallest_multiple ()
   local i = 20
@@ -28,7 +28,7 @@ local function smallest_multiple ()
   end
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   local r = smallest_multiple()
   print(r)
 end)

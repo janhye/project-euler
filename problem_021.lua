@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local math = math
 
@@ -29,6 +29,6 @@ local function answer ()
   return sum
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

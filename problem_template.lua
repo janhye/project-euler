@@ -1,8 +1,8 @@
-local helpers = require 'helpers'
+local helper = require 'lib.helper'
 
 local function answer ()
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

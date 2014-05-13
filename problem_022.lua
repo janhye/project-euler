@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local io = io
 local table = table
@@ -24,6 +24,6 @@ local function answer ()
   return result
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

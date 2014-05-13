@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local function answer1 ()
   local grid_size = {width = 20, height = 20}
@@ -41,6 +41,6 @@ local function answer ()
   return routes[0][0]
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local function answer ()
   local longest_chain = 1
@@ -24,6 +24,6 @@ local function answer ()
   return term, longest_chain
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

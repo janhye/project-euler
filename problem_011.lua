@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local grid = {
   {08,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,08},
@@ -52,6 +52,6 @@ local function answer ()
   return greatest
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

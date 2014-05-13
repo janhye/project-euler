@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require 'lib.helper'
 
 local function sum_even_fibs (target)
   local pre = 1
@@ -14,6 +14,6 @@ local function sum_even_fibs (target)
   return result
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(sum_even_fibs(4000000))
 end)

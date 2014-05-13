@@ -1,11 +1,11 @@
-local helpers = {}
+local helper = {}
 
 local os = os
 local math = math
 local coroutine = coroutine
 local string = string
 
-function helpers.elapsed_time (fn)
+function helper.elapsed_time (fn)
   local t = os.clock()
   fn()
   local elapsed = os.clock() - t
@@ -13,7 +13,7 @@ function helpers.elapsed_time (fn)
   return elapsed
 end
 
-function helpers.remove_at (t, n)
+function helper.remove_at (t, n)
   local v = t[n]
   for i = n, #t do
     if i == #t then 
@@ -25,7 +25,7 @@ function helpers.remove_at (t, n)
   return v
 end
 
-function helpers.factorial (n)
+function helper.factorial (n)
   local f = 1
   for i = 1, n do
     f = f * i
@@ -33,7 +33,7 @@ function helpers.factorial (n)
   return f
 end
 
-function helpers.find (array, fn)
+function helper.find (array, fn)
   for i, v in ipairs(array) do 
     if fn(v) then
       return i, v
@@ -63,8 +63,8 @@ local function primesgen ()
   end
 end
 
-function helpers.primes ()
+function helper.primes ()
   return coroutine.wrap(function () primesgen() end)
 end
 
-return helpers
+return helper

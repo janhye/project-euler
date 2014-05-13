@@ -1,6 +1,6 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
-local Bignum = require 'bignum'
+local Bignum = require "lib.bignum"
 
 local function answer ()
   local f1 = Bignum.new(1)
@@ -16,6 +16,6 @@ local function answer ()
   end
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 local math = math
 
 local function is_leap_year (year)
@@ -39,6 +39,6 @@ local function answer ()
   return count
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

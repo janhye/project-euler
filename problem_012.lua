@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local math = math
 ---[[
@@ -56,7 +56,7 @@ local function find_triangular_index (factor_limit)
 end
 --]]
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   --print(find_triangular_index(500))
   print(answer())
 end)

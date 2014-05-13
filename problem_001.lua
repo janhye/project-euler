@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require 'lib.helper'
 
 local function multiples_of_3_or_5 (num)
   if num % 3 == 0 or num % 5 == 0 then
@@ -18,6 +18,6 @@ local function calculate (below)
   return result
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(calculate(1000))
 end)

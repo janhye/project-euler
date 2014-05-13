@@ -1,5 +1,5 @@
-local helpers = require 'helpers'
-local Bignum = require 'bignum'
+local helper = require "lib.helper"
+local Bignum = require "lib.bignum"
 
 local digits = { 
 "37107287533902102798797998220837590246510135740250",
@@ -122,6 +122,6 @@ local function answer ()
   return r
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

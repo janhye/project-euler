@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 local table = table
 local math = math
 
@@ -37,6 +37,6 @@ local function answer ()
   return tree[1][1]
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

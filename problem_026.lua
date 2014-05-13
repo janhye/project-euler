@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 local math = math
 
 local function answer ()
@@ -11,7 +11,7 @@ local function answer ()
       local factor = math.floor((remainder * 10) / i)
       remainder = (remainder * 10) % i
       if remainder ~= 0 then 
-        local idx = helpers.find(cycle, function (n) 
+        local idx = helper.find(cycle, function (n) 
           return n[2] == remainder
         end)
         if idx then 
@@ -30,6 +30,6 @@ local function answer ()
   return d, longest
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(answer())
 end)

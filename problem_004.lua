@@ -1,4 +1,4 @@
-local helpers = require 'helpers'
+local helper = require "lib.helper"
 
 local function is_palindrome (num)
   local num_str = tostring(num)
@@ -29,6 +29,6 @@ local function find_largest_palindrome ()
   return result, x, y
 end
 
-helpers.elapsed_time(function ()
+helper.elapsed_time(function ()
   print(find_largest_palindrome())
 end)
