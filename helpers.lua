@@ -1,6 +1,9 @@
 local helpers = {}
 
 local os = os
+local math = math
+local coroutine = coroutine
+local string = string
 
 function helpers.elapsed_time (fn)
   local t = os.clock()
@@ -37,6 +40,31 @@ function helpers.find (array, fn)
     end
   end
   return nil, nil
+end
+
+local function primesgen ()
+  local first_prime = 2
+  local prime_numbers = {first_prime}
+  coroutine.yield(first_prime)
+  for num = 3, math.huge do
+    local is_prime_number = true
+    local limit = num ^ 0.5
+    for _, v in ipairs(prime_numbers) do
+      if v > limit then break end
+      if num % v == 0 then
+        is_prime_number = false
+        break
+      end
+    end
+    if is_prime_number then
+      prime_numbers[#prime_numbers + 1] = num
+      coroutine.yield(num)
+    end
+  end
+end
+
+function helpers.primes ()
+  return coroutine.wrap(function () primesgen() end)
 end
 
 return helpers
