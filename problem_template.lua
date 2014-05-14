@@ -1,4 +1,4 @@
-local helper = require 'lib.helper'
+local helper = require "lib.helper"
 
 local function answer ()
 end

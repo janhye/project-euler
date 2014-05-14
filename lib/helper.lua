@@ -67,4 +67,18 @@ function helper.primes ()
   return coroutine.wrap(function () primesgen() end)
 end
 
+function helper.is_prime (n)
+  if n <= 1 or math.floor(n) ~= math.ceil(n) then 
+    return false 
+  end
+
+  local limit = n ^ 0.5
+  for i = 2, limit do
+    if n % i == 0 then
+      return false
+    end
+  end
+  return true
+end
+
 return helper

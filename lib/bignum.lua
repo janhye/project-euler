@@ -161,6 +161,21 @@ function BignumDec.pow2 (n)
   return b
 end
 
+-- m ^ n
+function BignumDec.pow (m, n)
+  local b
+  if n == 0 then
+    b = BignumDec.new(1)
+  elseif n >= 1 then
+    b = BignumDec.new(m)
+  end
+
+  for i = 2, n do
+    b = b:mul(m)
+  end
+  return b
+end
+
 -- n!
 function BignumDec.factorial (n)
   local fact = BignumDec.new(1)
