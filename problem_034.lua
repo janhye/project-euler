@@ -1,6 +1,6 @@
 local helper = require "lib.helper"
 
-local fact = {}
+local fact = {[0] = 1}
 local function factorial (n)
   if fact[n] ~= nil then 
     return fact[n]
@@ -17,6 +17,7 @@ local function factorial (n)
 end
 
 local function answer ()
+  factorial(9)
   local res = 0
   for i = 11, 2540160 do
     local n = 0
@@ -24,7 +25,7 @@ local function answer ()
     repeat
       local mod = m % 10
       m = (m - mod) / 10
-      n = n + factorial(mod)
+      n = n + fact[mod]
     until m == 0
 
     if n == i then
