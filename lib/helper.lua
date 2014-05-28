@@ -2,8 +2,10 @@ local helper = {}
 
 local os = os
 local math = math
-local coroutine = coroutine
+local yield, wrap = coroutine.yield, coroutine.wrap
 local string = string
+local table = table
+local io = io
 
 function helper.elapsed_time (fn)
   local t = os.clock()
@@ -45,7 +47,7 @@ end
 local function primesgen ()
   local first_prime = 2
   local prime_numbers = {first_prime}
-  coroutine.yield(first_prime)
+  yield(first_prime)
   for num = 3, math.huge do
     local is_prime_number = true
     local limit = num ^ 0.5
@@ -58,13 +60,13 @@ local function primesgen ()
     end
     if is_prime_number then
       prime_numbers[#prime_numbers + 1] = num
-      coroutine.yield(num)
+      yield(num)
     end
   end
 end
 
 function helper.primes ()
-  return coroutine.wrap(function () primesgen() end)
+  return wrap(function () primesgen() end)
 end
 
 function helper.is_prime (n)
@@ -79,6 +81,92 @@ function helper.is_prime (n)
     end
   end
   return true
+end
+
+function helper.set_default (t, d)
+  local mt = { __index = function () return d end }
+  setmetatable(t, mt)
+end
+
+local function permgen (a, n)
+  n = n or #a
+  if n <= 1 then
+    yield(a)
+  else
+    -- default for 'n' is size of 'a'
+    -- nothing to change?
+    for i = 1, n do
+      -- put i-th element as the last one
+      a[n], a[i] = a[i], a[n]
+      -- generate all permutations of the other elements
+      permgen(a, n - 1)
+      -- restore i-th element
+      a[n], a[i] = a[i], a[n]
+    end
+  end
+end
+
+function helper.permgen (a, n)
+  return wrap(function () permgen(a, n) end)
+end
+
+local function combinegen (a, n, m, subset)
+  if m <= 0 then
+    yield(subset)
+    return
+  end
+
+  for i = n, m, -1 do
+    subset[m] = a[i]
+    combinegen(a, i - 1, m - 1, subset)
+  end
+end
+
+function helper.combinegen (a, m)
+  local subset = {}
+  return wrap(function () combinegen(a, #a, m, subset) end)
+end
+
+-- 分数化简
+function helper.lowest_common_terms (numerator, denominator)
+  local n, d = numerator, denominator
+  local limit = n ^ 0.5
+
+  local i = 2
+  while i <= limit do
+    if n % i == 0 then
+      if d % i == 0 then
+        d = d / i
+        n = n / i
+        limit = n ^ 0.5
+        i = 1
+      elseif d % (n / i) == 0 then
+        d = d / (n / i)
+        n = i
+        limit = n ^ 0.5
+        i = 1
+      end
+    end
+    i = i + 1
+  end
+
+  if d % n == 0 then
+    d = d / n
+    n = 1
+  end
+
+  return n, d
+end
+
+function helper.pp (t)
+  for i, v in ipairs(t) do
+    io.write(v)
+    if i ~= #t then 
+      io.write(", ")
+    else
+      io.write("\n")
+    end
+  end
 end
 
 return helper

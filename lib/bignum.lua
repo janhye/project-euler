@@ -179,7 +179,7 @@ end
 -- n!
 function BignumDec.factorial (n)
   local fact = BignumDec.new(1)
-  for i = 2, 100 do
+  for i = 2, n do
     fact = fact:mul(i)
   end
   return fact
