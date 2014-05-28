@@ -1,7 +1,7 @@
 local helper = {}
 
 local os = os
-local math = math
+local floor, ceil = math.floor, math.ceil
 local yield, wrap = coroutine.yield, coroutine.wrap
 local string = string
 local table = table
@@ -70,7 +70,7 @@ function helper.primes ()
 end
 
 function helper.is_prime (n)
-  if n <= 1 or math.floor(n) ~= math.ceil(n) then 
+  if n <= 1 or floor(n) ~= ceil(n) then 
     return false 
   end
 
