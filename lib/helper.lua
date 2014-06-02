@@ -158,6 +158,26 @@ function helper.lowest_common_terms (numerator, denominator)
   return n, d
 end
 
+function helper.split_digits (n)
+  local digits = {}
+  repeat
+    local m = n % 10
+    n = (n - m) / 10
+    digits[#digits+1] = m
+  until n == 0
+
+  return digits
+end
+
+function helper.digits_to_number (digits)
+  local n = 0
+  for i, v in ipairs(digits) do
+    n = n + v * 10 ^ (i - 1)
+  end
+  
+  return n
+end
+
 function helper.pp (t)
   for i, v in ipairs(t) do
     io.write(v)

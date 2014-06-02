@@ -1,17 +1,7 @@
 local helper = require "lib.helper"
 local is_prime = helper.is_prime
 local primes = helper.primes
-
-local function split_digits (n)
-  local res = {}
-  local m
-  repeat
-    m = n % 10
-    n = (n - m) / 10
-    res[#res+1] = m
-  until n == 0
-  return res
-end
+local split_digits = helper.split_digits
 
 local function answer ()
   local count = 0

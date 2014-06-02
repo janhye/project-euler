@@ -4,26 +4,8 @@ local permgen = helper.permgen
 local ipairs = ipairs
 local sort = table.sort
 local concat = table.concat
-
-local function split_number (n)
-  local digits = {}
-  repeat
-    local m = n % 10
-    n = (n - m) / 10
-    digits[#digits+1] = m
-  until n == 0
-
-  return digits
-end
-
-local function digits_to_number (digits)
-  local n = 0
-  for i, v in ipairs(digits) do
-    n = n + v * 10 ^ (i - 1)
-  end
-  
-  return n
-end
+local split_digits = helper.split_digits
+local digits_to_number = helper.digits_to_number
 
 local function answer ()
   local ps = {}
@@ -41,7 +23,7 @@ local function answer ()
   local buf = {}
   for _, v in ipairs(ps) do
     if not buf[v] then
-      local digits = split_number(v)
+      local digits = split_digits(v)
       local ps_perm = {}
       for perm in permgen(digits) do
         local n = digits_to_number(perm)
