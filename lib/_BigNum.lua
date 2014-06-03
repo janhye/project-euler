@@ -417,7 +417,7 @@ function BigNum.mul( bnum1 , bnum2 , bnum3 )
       for j = 0 , bnum2.len - 1 do
          carry =  ( bnum1[i] * bnum2[j] + carry ) ;
          carry = carry + bnum3[i + j] ;
-         bnum3[i + j] = math.mod ( carry , RADIX ) ;
+         bnum3[i + j] = carry % RADIX ;
          temp2 = bnum3[i + j] ;
          carry =  math.floor ( carry / RADIX ) ;
       end
@@ -568,7 +568,7 @@ function BigNum.pow( bnum1 , bnum2 )
       return y ;
    end
    while 1 do
-      if math.mod( n[0] , 2 ) == 0 then
+      if n[0] % 2 == 0 then
          n = n / 2 ;
       else
          n = n / 2 ;
