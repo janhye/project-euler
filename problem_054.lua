@@ -53,8 +53,13 @@ local function rank (cards)
 
   -- check straight
   local is_straight = true
+  local cards_count = #cards
+  -- for special straight: (A,2,3,4,5) {2,3,4,5,14} 
+  if to_card_number(cards[5]) == 14 and to_card_number(cards[1]) == 2 then
+    cards_count = cards_count - 1
+  end
   local pre_cn = to_card_number(cards[1])
-  for i = 2, #cards do
+  for i = 2, cards_count do
     cn = to_card_number(cards[i])
     if pre_cn + 1 ~= cn then
       is_straight = false
